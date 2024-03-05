@@ -1,0 +1,89 @@
+<ion-app>
+  <ion-split-pane contentId="menu-content" when="md">
+    <ion-menu
+      class="max-w-[20%]"
+      contentId="menu-content"
+      side="start"
+      type="overlay"
+    >
+      <ion-content>
+        <ion-list lines="none">
+          <div class="flex items-center justify-center mt-4 mb-4">
+            <img src="../assets/images/company/logo.svg" alt="" />
+          </div>
+          <div class="flex items-center justify-center mb-8">
+            <p class="app-title">Painel Admin</p>
+          </div>
+          <ng-container *ngFor="let each of menu.items">
+            <ng-container *ngIf="each.child">
+              <ion-accordion-group>
+                <ion-accordion value="first">
+                  <ion-item
+                    [disabled]="each.disabled"
+                    slot="header"
+                    class="text-[0.8rem] ml-6 mt-2 cursor-pointer text-white hover:text-white"
+                    (click)="menu.goTo(each)"
+                  >
+                    <ion-icon
+                      class="text-[0.9rem] m-0 mr-1 text-white hover:text-white"
+                      slot="start"
+                      name="{{ each.icon }}-outline"
+                    ></ion-icon>
+                    <ion-label class="m-2 hover:text-white">{{
+                      each.name
+                    }}</ion-label>
+                  </ion-item>
+                  <div class="ion-padding ml-2 mb-2" slot="content">
+                    <ng-container *ngFor="let eachChild of each.child">
+                      <ion-item
+                        [disabled]="eachChild.disabled"
+                        [ngClass]="
+                          eachChild.selected
+                            ? 'text-primary selected rounded-s-full'
+                            : 'text-white'
+                        "
+                        class="text-[0.8rem] ml-6 mt-2 cursor-pointer"
+                        (click)="menu.goTo(eachChild)"
+                      >
+                        <ion-icon
+                          [ngClass]="
+                            eachChild.selected ? 'text-primary' : 'text-white'
+                          "
+                          class="text-[0.9rem] m-0 mr-1"
+                          slot="start"
+                          name="{{ eachChild.icon }}-outline"
+                        ></ion-icon>
+                        <ion-label class="m-2">{{ eachChild.name }}</ion-label>
+                      </ion-item>
+                    </ng-container>
+                  </div>
+                </ion-accordion>
+              </ion-accordion-group>
+            </ng-container>
+            <ng-container *ngIf="!each.child">
+              <ion-item
+                [disabled]="each.disabled"
+                [ngClass]="
+                  each.selected
+                    ? 'text-primary selected rounded-s-full'
+                    : 'text-white'
+                "
+                class="text-[0.8rem] ml-6 mt-2 cursor-pointer"
+                (click)="menu.goTo(each)"
+              >
+                <ion-icon
+                  [ngClass]="each.selected ? 'text-primary' : 'text-white'"
+                  class="text-[0.9rem] m-0 mr-1"
+                  slot="start"
+                  name="{{ each.icon }}-outline"
+                ></ion-icon>
+                <ion-label class="m-2">{{ each.name }}</ion-label>
+              </ion-item>
+            </ng-container>
+          </ng-container>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="menu-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

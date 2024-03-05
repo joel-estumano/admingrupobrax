@@ -1,0 +1,54 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+  <div class="px-6 flex flex-col justify-center">
+    <app-sub-header title="Categorias - Financeiro"></app-sub-header>
+    <!-- <div class="flex items-center w-[75%]">
+      <ion-searchbar
+        class="w-[60%]"
+        placeholder="Digite sua busca"
+        inputmode="text"
+        type="text"
+        [debounce]="300"
+        [(ngModel)]="search"
+        (ionChange)="searching()"
+        (ionClear)="searching(true)"
+      ></ion-searchbar>
+      <ion-button (click)="searching()" class="w-[15%]" expand="block">
+        <ion-label class="text-[0.6rem] font-bold" color="light"
+          >Buscar</ion-label
+        >
+      </ion-button>
+    </div> -->
+
+    <app-custom-tabs
+      *ngIf="user.value"
+      class="w-full"
+      [items]="tabs"
+      [filter]="true"
+      (event)="tabEvent($event)"
+    ></app-custom-tabs>
+
+    <app-table
+      *ngIf="categories.show && categories.pages.length > 0"
+      [headers]="categories.headers"
+      [data]="categories.show[categories.currentPage] ? categories.show[categories.currentPage] : []"
+      (edit)="edit($event)"
+      (del)="del($event)"
+    ></app-table>
+    <div class="mt-4">
+      <app-pagination
+        *ngIf="categories.show && categories.pages.length > 0"
+        [currentPage]="categories.currentPage"
+        [res]="categories.show"
+        [tabs]="categories.pages"
+        (pageChange)="categories.changePage($event)"
+      ></app-pagination>
+    </div>
+    <div class="self-center my-2">
+      <ion-button (click)="add()">
+        <ion-label class="text-white">Nova Categoria</ion-label>
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

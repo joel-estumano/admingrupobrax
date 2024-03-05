@@ -1,0 +1,24 @@
+<app-header url="users"></app-header>
+
+<ion-content [fullscreen]="true">
+  <div class="flex flex-col items-center justify-center h-100 m-8">
+    <ion-item class="w-full">
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input [(ngModel)]="addUser.nome" type="text" placeholder="Nome"></ion-input>
+    </ion-item>
+    <ion-item class="w-full">
+      <ion-label position="floating">E-mail</ion-label>
+      <ion-input [(ngModel)]="addUser.email" type="text" placeholder="E-mail"></ion-input>
+    </ion-item>
+    <ion-item class="w-full">
+      <ion-select aria-label="level" placeholder="Nível de Permissão" (ionChange)="selectLevel($event)">
+        <ng-container *ngFor="let item of users.levels">
+          <ion-select-option value="{{item.level}}">{{item.name}}</ion-select-option>
+        </ng-container>
+      </ion-select>
+    </ion-item>
+    <ion-button (click)="save()" expand="block">
+      <ion-label color="light" class="capitalize">Cadastrar Usuário</ion-label>
+    </ion-button>
+  </div>
+</ion-content>

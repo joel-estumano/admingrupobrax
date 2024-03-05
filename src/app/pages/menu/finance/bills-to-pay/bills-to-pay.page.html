@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+  <div class="px-6 flex flex-col justify-center">
+    <app-sub-header title="Contas a Pagar"></app-sub-header>
+    <!-- <div class="flex items-center w-[75%]">
+      <ion-searchbar class="w-[60%]" placeholder="Digite sua busca" inputmode="text" type="text" [debounce]="300"
+        [(ngModel)]="search" (ionChange)="searching()" (ionClear)="searching(true)"></ion-searchbar>
+      <ion-button (click)="searching()" class="w-[15%]" expand="block">
+        <ion-label class="text-[0.6rem] font-bold" color="light">Buscar</ion-label>
+      </ion-button>
+    </div> -->
+
+    <app-custom-tabs *ngIf="user.value" class="w-full" [items]="tabs" [active]="current_tab" [filter]="true"
+      (event)="tabEvent($event.index, $event.tab)"></app-custom-tabs>
+
+    <app-table *ngIf="billsToPay.show && billsToPay.pages.length > 0" 
+      [headers]="filterOption == 1 ? billsToPay.phone_headers : billsToPay.headers"
+      [data]="billsToPay.show[billsToPay.currentPage] ? billsToPay.show[billsToPay.currentPage] : []"></app-table>
+
+    <div class="mt-4">
+      <app-pagination *ngIf="billsToPay.show && billsToPay.pages.length > 0" [currentPage]="billsToPay.currentPage"
+        [res]="billsToPay.show" [tabs]="billsToPay.pages" (pageChange)="billsToPay.changePage($event)"></app-pagination>
+    </div>
+  </div>
+</ion-content>

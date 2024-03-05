@@ -1,0 +1,10 @@
+:host ::ng-deep .ck-editor {
+    height: 100%;
+    overflow: auto;
+}
+
+:host ::ng-deep .ck-editor .ck.ck-toolbar.ck-toolbar_grouping {
+    position: sticky;
+    z-index: 2;
+    top: 0;
+}

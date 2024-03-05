@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "grupo-brax-dev"
+  },
+  "targets": {
+    "grupo-brax-dev": {
+      "hosting": {
+        "admin": [
+          "grupo-brax-admin"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

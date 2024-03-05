@@ -1,0 +1,134 @@
+<app-header></app-header>
+
+<ion-content>
+  <div class="px-6">
+    <app-sub-header title="Vendas"></app-sub-header>
+    <div class="flex flex-col items-center justify-center w-full">
+      <div class="w-full mt-4">
+        <app-custom-tabs
+          *ngIf="sale.tabs"
+          [items]="sale.tabs"
+          [step]="true"
+          [stepIndex]="{
+          current: sale.selectedTab.value + 1,
+          total: sale.tabs.length
+        }"
+          (event)="tabEvent($event, sale.tabs)"
+        ></app-custom-tabs>
+        <div class="round bg-secondaryLight pb-4">
+          <div class="mx-4 mr-0">
+            <ng-container *ngIf="sale.selectedTab.name === sale.tabs[0].name">
+              <div class="flex items-center w-full min-h-14">
+                <app-text-input
+                  class="w-full"
+                  [input]="{
+                      title: 'Nome do Parceiro',
+                      value: call && call.partner ? call.partner.nome : '',
+                      type: 'text',
+                  }"
+                ></app-text-input>
+                <app-text-input
+                  class="w-full"
+                  [input]="{
+                  title: 'E-mail do Parceiro',
+                  value: call && call.partner ? call.partner.email : '',
+                  type: 'text',
+              }"
+                ></app-text-input>
+                <app-text-input
+                  class="w-full"
+                  [input]="{
+                      title: 'Telefone do Parceiro',
+                    value: call && call.partner ? call.partner.telefone : '',
+                      type: 'text',
+                  }"
+                ></app-text-input>
+              </div>
+              <div class="flex items-center w-full min-h-14">
+                <app-text-input
+                  class="w-full"
+                  [input]="{
+                    title: 'Data de criação',
+                      value: call ? getDate(call.createdAt.seconds * 1000) : '',
+                    type: 'text',
+                }"
+                ></app-text-input>
+                <app-text-input
+                  class="w-full"
+                  [input]="{
+                      title: 'Horário de Criação',
+                    value: call ? getTime(call.createdAt.seconds * 1000) : '',
+                      type: 'text',
+                  }"
+                ></app-text-input>
+              </div>
+              <div class="flex items-center w-full min-h-14">
+                <app-text-input
+                  class="w-full"
+                  [input]="{
+                    title: 'Nome do Cliente',
+                      value: call && call.client ? call.client.nome : '',
+                    type: 'text',
+                }"
+                ></app-text-input>
+                <app-text-input
+                  class="w-full"
+                  [input]="{
+                        title: 'E-mail do Cliente',
+                      value: call && call.client ? call.client.email : '',
+                        type: 'text',
+                    }"
+                ></app-text-input>
+                <app-text-input
+                  class="w-full"
+                  [input]="{
+                    title: 'Endereço do Cliente',
+                      value: call && call.client ? call.client.telefone : '',
+                    type: 'text',
+                }"
+                ></app-text-input>
+              </div>
+              <div class="flex items-center w-full min-h-14">
+                <app-text-input
+                  class="w-full"
+                  [input]="{
+                        title: 'Forma de Pagamento',
+                      value: call ? call.payment_method : '',
+                        type: 'text',
+                    }"
+                ></app-text-input>
+                <app-text-input
+                  class="w-full"
+                  [input]="{
+                    title: 'Status da Venda',
+                      value: call ? call.status : '',
+                    type: 'text',
+                }"
+                ></app-text-input>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="sale.selectedTab.name === sale.tabs[1].name">
+              <app-step3 [call]="call"></app-step3>
+            </ng-container>
+            <ng-container *ngIf="sale.selectedTab.name === sale.tabs[2].name">
+              <app-step5 [data]="data"></app-step5>
+            </ng-container>
+            <ng-container *ngIf="sale.selectedTab.name === sale.tabs[3].name">
+              <app-step6 [id]="id" [call]="call" [sign]="true"></app-step6>
+            </ng-container>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-center w-full my-6 gap-4">
+          <ion-button
+            (click)="back()"
+            expand="block"
+            class="text-[0.6rem] font-bold h-[2rem] w-[15%] text-white"
+          >
+            Voltar
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,27 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+  <div class="flex flex-col items-center justify-center h-full w-full py-8">
+    <h1 class="text-center text-[1.5rem] m-0 mb-8">Contrato</h1>
+    <div class="w-[90%]">
+      <ion-item class="w-full my-4">
+        <ion-label position="stacked">Nome do Contrato</ion-label>
+        <ion-input
+          [(ngModel)]="contractValue.title"
+          type="text"
+          placeholder="Informe o nome do contrato"
+        ></ion-input>
+      </ion-item>
+      <ckeditor
+        ngClass="max-h-[30rem] overflow-auto"
+        [(ngModel)]="contractValue.text"
+        [editor]="Editor"
+        [config]="config"
+        data="<p>Lorem Ipsum!</p>"
+      ></ckeditor>
+    </div>
+    <ion-button class="my-8 w-[25%]" (click)="save()" expand="block">
+      <ion-label color="light" class="capitalize">Salvar</ion-label>
+    </ion-button>
+  </div>
+</ion-content>

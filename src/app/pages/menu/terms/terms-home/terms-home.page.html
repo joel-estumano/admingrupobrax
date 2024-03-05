@@ -1,0 +1,17 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+  <div class="flex flex-col items-center justify-center h-full w-full">
+    <h1 class="text-center text-[1.5rem] m-0 mb-8">Termos de Uso</h1>
+    <ckeditor
+      ngClass="max-h-[30rem] overflow-auto w-[90%]"
+      *ngIf="terms.text"
+      [(ngModel)]="terms.text"
+      [editor]="Editor"
+      data="<p>Lorem Ipsum!</p>"
+    ></ckeditor>
+    <ion-button class="mt-8 w-[25%]" (click)="save()" expand="block">
+      <ion-label color="light" class="capitalize"> Salvar</ion-label>
+    </ion-button>
+  </div>
+</ion-content>

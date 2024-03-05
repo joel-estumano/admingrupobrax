@@ -1,0 +1,23 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+  <div class="px-6 flex flex-col justify-center">
+    <app-sub-header title="Tipo - Comissões e Campanhas"></app-sub-header>
+    <app-table *ngIf="types.show && types.pages.length > 0" [headers]="types.headers"
+      [data]="types.show[types.currentPage] ? types.show[types.currentPage] : []"
+      (edit)="edit($event)" (del)="del($event)" class="mt-4"></app-table>
+
+    <div class="mt-4">
+      <app-pagination *ngIf="types.show && types.pages.length > 0"
+        [currentPage]="types.currentPage"
+        [res]="types.show" [tabs]="types.pages"
+        (pageChange)="types.changePage($event)"></app-pagination>
+    </div>
+
+    <div class="self-center my-2">
+      <ion-button (click)="add()">
+        <ion-label class="text-white">Novo Tipo</ion-label>
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

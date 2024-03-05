@@ -1,0 +1,16 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+  <div class="flex flex-col items-center justify-center h-full w-full py-8">
+    <h1 class="text-center text-[1.5rem] m-0 mb-8">Forma de Pagamento</h1>
+    <div class="w-[90%]">
+      <ion-item class="w-full my-4">
+        <ion-label position="stacked">Forma de Pagamento</ion-label>
+        <ion-input [(ngModel)]="payment.title" type="text" placeholder="Informe a forma de Pagamento"></ion-input>
+      </ion-item>
+    </div>
+    <ion-button class="my-8 w-[25%]" (click)="save()" expand="block">
+      <ion-label color="light" class="capitalize">Salvar</ion-label>
+    </ion-button>
+  </div>
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "be220-admin",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

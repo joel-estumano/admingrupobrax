@@ -1,0 +1,82 @@
+<div class="flex items-center w-full h-16">
+  <ion-item class="w-full" lines="none">
+    <ion-label position="stacked">Nome</ion-label>
+    <ion-input [(ngModel)]="user.nome" type="text" placeholder="Informe o nome completo"></ion-input>
+  </ion-item>
+  <ion-item class="w-full" lines="none">
+    <ion-label position="stacked">Data de Nascimento</ion-label>
+    <ion-input readonly (click)="pickDate()" type="email" placeholder="Selecione uma data"
+      [(ngModel)]="user.data_nascimento"></ion-input>
+  </ion-item>
+</div>
+
+<ion-datetime-button class="hidden" datetime="date"></ion-datetime-button>
+<ion-modal [keepContentsMounted]="true" [isOpen]="openDate" (didDismiss)="pickDate()">
+  <ng-template>
+    <ion-datetime id="date" presentation="date" (ionChange)="setDate($event)" [showDefaultButtons]="true"
+      doneText="Confirmar" cancelText="Cancelar"></ion-datetime>
+  </ng-template>
+</ion-modal>
+<div class="flex items-center w-full h-16">
+  <ion-item class="w-full" lines="none">
+    <ion-label position="stacked">Nome da Mãe</ion-label>
+    <ion-input [(ngModel)]="user.nome_mae" type="text" placeholder="Informe o nome completo da mãe"></ion-input>
+  </ion-item>
+</div>
+
+<div class="flex items-center w-full h-16">
+  <ion-item class="w-full" lines="none">
+    <ion-label position="stacked">RG</ion-label>
+    <ion-input [(ngModel)]="user.rg" type="text" placeholder="Informe o RG" maxlength="12"
+      mask="**.***.***-*"></ion-input>
+  </ion-item>
+  <ion-item class="w-full" lines="none">
+    <ion-label position="stacked">CPF</ion-label>
+    <ion-input [(ngModel)]="user.cpf" type="text" placeholder="Informe o CPF" maxlength="14"
+      mask="***.***.***-**"></ion-input>
+  </ion-item>
+</div>
+
+<div class="flex items-center w-full h-16">
+  <ion-item class="w-[30%]" lines="none">
+    <ion-label position="stacked">CEP</ion-label>
+    <ion-input [(ngModel)]="user.cep" type="text" placeholder="Informe o CEP" maxlength="9"
+      mask="*****-***"></ion-input>
+  </ion-item>
+  <ion-item class="w-[20%]" lines="none">
+    <ion-label position="stacked">UF</ion-label>
+    <ion-input [(ngModel)]="user.uf" type="text" placeholder="Selecione a UF" maxlength="2"></ion-input>
+  </ion-item>
+  <ion-item class="w-1/2" lines="none">
+    <ion-label position="stacked">Logradouro</ion-label>
+    <ion-input [(ngModel)]="user.logradouro" type="text" placeholder="Informe o logradouro"></ion-input>
+  </ion-item>
+</div>
+
+<div class="flex items-center w-full h-16">
+  <ion-item class="w-full" lines="none">
+    <ion-label position="stacked">Complemento</ion-label>
+    <ion-input [(ngModel)]="user.complemento" type="text" placeholder="Informe o complemento, se houver"></ion-input>
+  </ion-item>
+  <ion-item class="w-full" lines="none">
+    <ion-label position="stacked">Número</ion-label>
+    <ion-input [(ngModel)]="user.numero" type="number" placeholder="Informe o número" maxlength="7"></ion-input>
+  </ion-item>
+</div>
+
+<div class="flex items-center w-full h-16">
+  <ion-item class="w-full" lines="none">
+    <ion-label position="stacked">Telefone</ion-label>
+    <ion-input [(ngModel)]="user.telefone" type="tel" placeholder="Informe o telefone com DDD" maxlength="15"
+      mask="(**) *****-****"></ion-input>
+  </ion-item>
+  <ion-item class="w-full" lines="none">
+    <ion-label position="stacked">Celular</ion-label>
+    <ion-input [(ngModel)]="user.celular" type="tel" placeholder="Informe o Celular com DDD" maxlength="15"
+      mask="(**) *****-****"></ion-input>
+  </ion-item>
+  <ion-item class="w-full" lines="none">
+    <ion-label position="stacked">E-mail</ion-label>
+    <ion-input [(ngModel)]="user.email" type="email" placeholder="Ex: seunome@email.com"></ion-input>
+  </ion-item>
+</div>

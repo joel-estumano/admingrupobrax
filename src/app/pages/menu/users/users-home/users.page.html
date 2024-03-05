@@ -1,0 +1,41 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card class="px-4 py-4">
+    <ion-list *ngIf="users.allUsers">
+      <!-- <ion-item class="text-[0.8rem] font-bold w-full">
+        <ion-label class="text-start w-[30%]">E-mail</ion-label>
+        <ion-label class="text-start w-[30%]">Nome</ion-label>
+        <ion-label class="text-start w-[30%]">Data de Criação</ion-label>
+        <ion-label class="text-start w-[10%]">Perfil</ion-label>
+      </ion-item> -->
+      <ng-container *ngFor="let user of users.allUsers">
+        <ion-item-sliding *ngIf="user.levelInfo">
+          <ion-item (click)="selectUser(user)" class="text-[0.8rem]">
+            <ion-label class="text-start w-[30%]">{{user.email}}</ion-label>
+            <ion-label class="text-start w-[30%]">{{user.nome ? user.nome.trim() : ''}}</ion-label>
+            <ion-label class="text-start w-[30%]">{{this.getDate(user)}}</ion-label>
+            <ion-badge class="bg-[{{user.levelInfo.color}}] cursor-pointer w-[10%] text-[0.7rem] font-medium" mode="ios">
+              <ion-label class="text-center" color="light">{{user.levelInfo.name}}</ion-label>
+            </ion-badge>
+          </ion-item>
+          <ion-item-options>
+            <ion-item-option (click)="exclude(user)" color="danger">Deletar</ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ng-container>
+    </ion-list>
+  </ion-card>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="add()">
+      <ion-icon color="light" name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+<ion-footer *ngIf="usersToUpdate.length > 0">
+  <ion-toolbar>
+    <ion-button (click)="send()" expand="block" fill="clear" shape="round">
+      Enviar
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

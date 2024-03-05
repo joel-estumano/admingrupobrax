@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+  <div class="px-6 flex flex-col justify-center">
+    <app-sub-header title="Movimentações"></app-sub-header>
+    <div class="flex items-center w-[75%]">
+      <ion-searchbar class="w-[60%]" placeholder="Digite sua busca" inputmode="text" type="text" [debounce]="300"
+        [(ngModel)]="search" (ionChange)="searching()" (ionClear)="searching(true)"></ion-searchbar>
+      <ion-button (click)="searching()" class="w-[15%]" expand="block">
+        <ion-label class="text-[0.6rem] font-bold" color="light">Buscar</ion-label>
+      </ion-button>
+    </div>
+
+    <app-custom-tabs *ngIf="user.value" class="w-full" [items]="tabs" [active]="current_tab" [filter]="true"
+      (event)="tabEvent($event.index, $event.tab)"></app-custom-tabs>
+
+    <app-table *ngIf="movements.show && movements.pages.length > 0" [headers]="movements.headers"
+      [data]="movements.show[movements.currentPage] ? movements.show[movements.currentPage] : []"
+      [getTotal]="true"></app-table>
+      
+    <div class="mt-4">
+      <app-pagination *ngIf="movements.show && movements.pages.length > 0" [currentPage]="movements.currentPage"
+        [res]="movements.show" [tabs]="movements.pages" (pageChange)="movements.changePage($event)"></app-pagination>
+    </div>
+  </div>
+</ion-content>

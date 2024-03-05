@@ -1,0 +1,10 @@
+<ion-item class="w-full" lines="none">
+  <ion-label position="stacked">{{ input.title }}</ion-label>
+  <ion-input
+    [readonly]="disabled"
+    [(ngModel)]="input.value"
+    type="{{ input.type }}"
+    placeholder="{{ input.placeholder }}"
+    (ionChange)="change.emit($event)"
+  ></ion-input>
+</ion-item>

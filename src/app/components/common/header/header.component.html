@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar class="px-6">
+    <div class="flex justify-between items-center w-full h-full">
+      <div>
+        <p *ngIf="user.value">Ola, Admin</p>
+      </div>
+      <div>
+        <ion-buttons>
+          <ion-button (click)="logout()" color="light" fill="clear">
+            <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
